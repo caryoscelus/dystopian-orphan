@@ -3,6 +3,13 @@ init python:
     config.keymap['walk_right'] = [ 'K_RIGHT', 'repeat_K_RIGHT' ]
 
 init python:
+    STEP_SOUNDS_N = 3
+    
+    def walk_sound():
+        sound = 'sounds/step_{:02}.flac'.format(int(renpy.random.random()*STEP_SOUNDS_N))
+        renpy.music.queue(sound, channel='sound', clear_queue=True)
+
+init python:
     class Walkman(object):
         def __init__(self):
             self.position = 0
@@ -13,12 +20,14 @@ init python:
             self.result = None
         
         def walk_left(self):
+            walk_sound()
             self.position -= self.step
             if self.position < self.bounds[0]:
                 self.position = self.bounds[0]
                 renpy.jump(self.walkout_left)
         
         def walk_right(self):
+            walk_sound()
             self.position += self.step
             if self.position > self.bounds[1]:
                 self.position = self.bounds[1]
