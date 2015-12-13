@@ -17,6 +17,7 @@ init python:
             self.step = 100
             self.walkout_left = 'walkout_left'
             self.walkout_right = 'walkout_right'
+            self.river = 'walk_river'
             self.result = None
         
         def walk_left(self):
@@ -44,10 +45,15 @@ label walkout_right:
     $ walkman.result = 'right'
     jump walk_the_street_wait
 
+label walk_river:
+    "dirty river"
+    jump walk_the_street_wait
+
 screen walk_the_street(walkman):
     imagemap:
         xoffset (-walkman.position)
         ground 'images/bg/street.png'
+        hotspot (450, 360, 200, 130) action Jump(walkman.river)
     key "walk_left" action Function(walkman.walk_left)
     key "walk_right" action Function(walkman.walk_right)
 
