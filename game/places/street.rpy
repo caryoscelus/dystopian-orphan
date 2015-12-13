@@ -65,6 +65,7 @@ label walk_the_street_wait:
     ""
     jump walk_the_street_wait
 label walk_the_street_return:
+    hide screen walk_the_street
     return walkman.result
 
 
@@ -76,9 +77,33 @@ label walk_wont_go_work:
     "It's not time to go to work."
     jump walk_the_street_wait
 
+label walk_return_home:
+    menu:
+        "Go home":
+            $ walkman.result = 'home'
+        "Cancel":
+            pass
+    jump walk_the_street_wait
+
+label walk_go_work:
+    menu:
+        "Go to work":
+            $ walkman.result = 'work'
+        "Cancel":
+            pass
+    jump walk_the_street_wait
+
 label walk_to_work():
     $ walkman.position = 0
     $ walkman.walkout_left = 'walk_wont_go_home'
+    $ walkman.walkout_right = 'walk_go_work'
     call walk_the_street
     $ print(_return)
+    return
+
+label walk_home():
+    $ walkman.position = 1280
+    $ walkman.walkout_right = 'walk_wont_go_work'
+    $ walkman.walkout_left = 'walk_return_home'
+    call walk_the_street
     return
