@@ -74,8 +74,10 @@ screen choice(items):
     window:
         #id "window"
         style "menu_window"
-        xoffset menu_offset[0]
-        yoffset menu_offset[1]
+        xoffset (0 if menu_offset is True else menu_offset[0])
+        yoffset (0 if menu_offset is True else menu_offset[1])
+        xalign (0.5 if menu_offset is True else 0.0)
+        yalign (0.5 if menu_offset is True else 0.0)
 
         vbox:
             style "menu"
@@ -98,7 +100,9 @@ init -2:
     $ config.narrator_menu = True
 
     style menu_window is default:
-        background "#fd6"
+        background "#dca"
+        xpadding 8
+        ypadding 8
 
     style menu_choice is button_text:
         clear
