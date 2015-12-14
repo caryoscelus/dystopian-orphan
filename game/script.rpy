@@ -4,6 +4,7 @@ label main_menu:
 label start:
     $ init_player('John Doe', 0)
     $ init_walkman()
+    $ init_workman()
     menu:
         "character_create":
             call character_create

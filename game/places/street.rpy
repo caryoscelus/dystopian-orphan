@@ -58,11 +58,12 @@ screen walk_the_street(walkman):
     key "walk_right" action Function(walkman.walk_right)
 
 label walk_the_street():
+    $ walkman.result = None
     show screen walk_the_street(walkman)
 label walk_the_street_wait:
     if walkman.result:
         jump walk_the_street_return
-    ""
+    empty ""
     jump walk_the_street_wait
 label walk_the_street_return:
     hide screen walk_the_street
@@ -98,7 +99,6 @@ label walk_to_work():
     $ walkman.walkout_left = 'walk_wont_go_home'
     $ walkman.walkout_right = 'walk_go_work'
     call walk_the_street
-    $ print(_return)
     return
 
 label walk_home():
