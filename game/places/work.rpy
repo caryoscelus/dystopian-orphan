@@ -8,6 +8,7 @@ init python:
             self.work = 'work_work'
             self.leave = 'work_leave'
             self.result = None
+            self.has_worked = False
     
     def init_workman():
         renpy.store.workman = Workman()
@@ -17,7 +18,7 @@ screen control_room:
         ground "images/bg/control-room.png"
         alpha False
         hotspot ( 760,  340,  190,   80) action Jump(workman.printout)
-        hotspot (0, 10, 10, 10) action Jump(workman.cord)
+        hotspot ( 290,  360,  110,   90) action Jump(workman.cord)
         hotspot ( 370,  200,  370,  200) action Jump(workman.work)
         hotspot (   0,  540, 1280,  180) action Jump(workman.leave)
 
@@ -34,17 +35,41 @@ label control_room_return:
     return workman.result
 
 label work_printout:
-    "printout"
+    menu:
+        "Print prediction?"
+        "Yes":
+            prediction "Years left for this community to live: [life_prediction]."
+        "No":
+            pass
     jump control_room_wait
 
 label work_cord:
-    "cord"
+    menu:
+        "Unplug lifesupport controlling mainframe?"
+        "Yes":
+            $ workman.result = 'kill_cord'
+        "No":
+            pass
     jump control_room_wait
 
 label work_work:
-    "work"
+    $ workman.has_worked = True
+    "You do job.."
     jump control_room_wait
 
 label work_leave:
-    "leave"
+    menu:
+        "Leave?"
+        "Yes":
+            if workman.has_worked:
+                $ workman.result = 'leave'
+            else:
+                "You should finish your workday before leaving."
+        "No":
+            pass
     jump control_room_wait
+
+label work:
+    $ workman.has_worked = False
+    call control_room
+    return _return

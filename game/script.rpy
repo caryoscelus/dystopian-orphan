@@ -2,9 +2,11 @@ label main_menu:
     return
 
 label start:
+    $ life_prediction = 100500
     $ init_player('John Doe', 0)
     $ init_walkman()
     $ init_workman()
+    $ gameover = False
     menu:
         "character_create":
             call character_create
@@ -39,4 +41,9 @@ label the_story:
     if gameover:
         return
     call adult
+    return
+
+label game_over:
+    $ gameover = True
+    "GAME OVER"
     return
