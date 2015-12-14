@@ -70,7 +70,7 @@ label talk_about_baby:
             $ menu_offset = True
             menu:
                 "Of course not! Even i wouldn't commit such a sin.":
-                    neighbour0 "Oh, i'm so releived."
+                    neighbour0 "Oh, i'm so relieved."
                 "Maybe it is..":
                     neighbour0 "WHAT?! YOU CRAZY?"
                     $ menu_offset = True
@@ -81,7 +81,7 @@ label talk_about_baby:
                         "Please, calm down! It's not my baby!":
                             neighbour0 "I'M CALM!"
                             neighbour0 "Hmph, couldn't you tell it from the start?"
-    neighbour1 "Anyway, you gotta go tell goverment about it!"
+    neighbour1 "Anyway, you gotta go tell government about it!"
     neighbour2 "Wait, wait! Why would you do that?"
     neighbour1 "Hmm, what do you propose?"
     neighbour2 "Just think about it: it's going to take our precious resources

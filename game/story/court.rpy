@@ -40,7 +40,7 @@ label court:
     prosecutor "Your honor, we have yet another case of baby claimed to be found
     on the street. I think this is suspicious."
     judge "Hmph, i don't care what you think! What are the facts?"
-    prosecutor "On the december 14th the defendant [player.name] came home with
+    prosecutor "On the December 14th the defendant [player.name] came home with
     this baby in hands."
     prosecutor "[player.He] might have been hiding it before and now
     decided to reveal it as found in the streets!"
@@ -101,7 +101,7 @@ label court:
     
     judge "Okay, hearing is over. We think that defendant, [player.name], is a good,
     law-abiding citizen and should be rewarded for babysitting!"
-    judge "In the name of this court, holy judstice and my eternal life."
+    judge "In the name of this court, holy justice and my eternal life."
     play sound "amen.flac"
     judge "Amen!"
     $ renpy.music.set_volume(0.7, channel='crowd')
