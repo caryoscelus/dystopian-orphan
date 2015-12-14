@@ -23,6 +23,7 @@ screen control_room:
         hotspot (   0,  540, 1280,  180) action Jump(workman.leave)
 
 label control_room:
+    play engine "engine.mp3"
     $ workman.result = None
     show screen control_room
 label control_room_wait:
@@ -31,19 +32,27 @@ label control_room_wait:
     empty ""
     jump control_room_wait
 label control_room_return:
+    stop engine
     hide screen control_room
     return workman.result
 
+define printout = Character(None, what_font="fonts/GNUTypewriter.otf", window_background='images/bg/printout.png', window_xpadding=100, window_ypadding=80, what_prefix="{cps=0}", what_suffix="{/cps}")
+
 label work_printout:
+    $ config.narrator_menu = False
     menu:
         "Print prediction?"
         "Yes":
-            prediction "Years left for this community to live: [life_prediction]."
+            play sound 'printer.flac'
+            pause 3.5
+            $ say_align = 0.0
+            printout "Years left for this community to live: approximately [life_prediction]."
         "No":
             pass
     jump control_room_wait
 
 label work_cord:
+    $ config.narrator_menu = False
     menu:
         "Unplug lifesupport controlling mainframe?"
         "Yes":
@@ -54,10 +63,11 @@ label work_cord:
 
 label work_work:
     $ workman.has_worked = True
-    "You do job.."
+    "You do your job.."
     jump control_room_wait
 
 label work_leave:
+    $ config.narrator_menu = False
     menu:
         "Leave?"
         "Yes":

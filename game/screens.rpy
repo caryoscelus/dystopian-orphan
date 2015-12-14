@@ -9,6 +9,9 @@
 #
 # Screen that's used to display adv-mode dialogue.
 # http://www.renpy.org/doc/html/screen_special.html#say
+init python:
+    say_align = 0.0
+
 screen say(who, what, side_image=None, two_window=False):
 
     # Decide if we want to use the one-window or two-window variant.
@@ -17,6 +20,8 @@ screen say(who, what, side_image=None, two_window=False):
         # The one window variant.
         window:
             id "window"
+            
+            yalign say_align
 
             has vbox:
                 style "say_vbox"
@@ -94,13 +99,13 @@ screen choice(items):
                         text caption style "menu_choice"
 
                 else:
-                    textbutton caption style "menu_choice"
+                    text caption color '#fff'
 
 init -2:
     $ config.narrator_menu = True
 
     style menu_window is default:
-        background "#dca"
+        background "#0008"
         xpadding 8
         ypadding 8
 
@@ -178,6 +183,43 @@ screen nvl(dialogue, items=None):
     add SideImage() xalign 0.0 yalign 1.0
 
     use quick_menu
+
+
+##############################################################################
+# Main Menu
+#
+# Screen that's used to display the main menu, when Ren'Py first starts
+# http://www.renpy.org/doc/html/screen_special.html#main-menu
+
+screen main_menu():
+
+    # This ensures that any other menu screen is replaced.
+    tag menu
+
+    # The background of the main menu.
+    window:
+        style "mm_root"
+
+    # The main menu buttons.
+    frame:
+        style_group "mm"
+        xalign .5
+        yalign .5
+
+        has vbox
+
+        textbutton _("Start Game") action Start()
+        textbutton _("Load Game") action ShowMenu("load")
+        textbutton _("Preferences") action ShowMenu("preferences")
+        textbutton _("Help") action Help()
+        textbutton _("Credits") action Start('credits')
+        textbutton _("Quit") action Quit(confirm=False)
+
+init -2:
+
+    # Make all the main menu buttons be the same size.
+    style mm_button:
+        size_group "mm"
 
 
 ##############################################################################

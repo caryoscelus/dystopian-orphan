@@ -27,6 +27,9 @@ init python:
     
     def init_player(name, gender):
         renpy.store.player = NameCharacter(name, gender)
+    
+    def init_girl(name):
+        renpy.store.girl = NameCharacter(name, 1)
 
 screen character_create():
     window:
@@ -37,9 +40,23 @@ screen character_create():
         input changed player.set_name exclude '{}[]()'
         text "Your gender:"
         hbox:
-            textbutton "male" action SetField(player, 'gender', 0)
-            textbutton "female" action SetField(player, 'gender', 1)
+            textbutton "male" action SetField(player, 'gender', 0) text_bold (player.gender == 0)
+            textbutton "female" action SetField(player, 'gender', 1) text_bold (player.gender == 1)
         textbutton "Ok!" action Return()
 
 label character_create:
     call screen character_create()
+    return
+
+screen kid_name():
+    window:
+        xalign 0.5 yalign 0.5 
+        xfill False yfill False
+        has vbox
+        text "How do you name your baby girl?"
+        input changed girl.set_name exclude '{}[]()'
+        textbutton "Ok!" action Return()
+
+label kid_name:
+    call screen kid_name()
+    return

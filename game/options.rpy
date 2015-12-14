@@ -16,7 +16,7 @@ init -1 python hide:
     ## set to False before the game is released, so the user can't
     ## cheat using developer tools.
 
-    config.developer = True
+    config.developer = False
     config.autoreload = False
 
     ## These control the width and height of the screen.
@@ -99,7 +99,8 @@ init -1 python hide:
     #style.window.background = Solid('#232323')
     #style.window.background = Null()
     
-    style.nvl_window.background = Solid('#000')
+    #style.nvl_window.background = Solid('#000')
+    style.nvl_window.background = Null()
     
     ## Margin is space surrounding the window, where the background
     ## is not drawn.
@@ -123,7 +124,7 @@ init -1 python hide:
     # style.window.yminimum = 250
     # style.window.xminimum = 10
     
-    style.window.yalign = 0.0
+    #style.window.yalign = 0.0
 
 
     #########################################
@@ -140,18 +141,15 @@ init -1 python hide:
     ## the number is interpreted as a fraction of the size of the
     ## displayable or screen.
 
-    # style.mm_menu_frame.xpos = 0.5
-    # style.mm_menu_frame.xanchor = 0.5
-    # style.mm_menu_frame.ypos = 0.75
-    # style.mm_menu_frame.yanchor = 0.5
-
+    #style.mm_menu_frame.xalign = 0.5
+    #style.mm_menu_frame.yalign = 0.5
 
     #########################################
     ## These let you customize the default font used for text in Ren'Py.
 
     ## The file containing the default font.
 
-    # style.default.font = "DejaVuSans.ttf"
+    style.default.font = "fonts/Averia-Regular.ttf"
 
     ## The default size of text.
 
@@ -287,7 +285,7 @@ init -1 python hide:
 
     ## The default text speed in characters per second. 0 is infinite.
 
-    config.default_text_cps = 0
+    config.default_text_cps = 38
 
     ## The default auto-forward time setting.
 
