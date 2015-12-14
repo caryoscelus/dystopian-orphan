@@ -42,11 +42,11 @@ init python:
         renpy.music.set_volume(0.5*baby_amount, 0.1, channel='baby')
     
     def start_river_ambience():
-        renpy.music.play('256012__jagadamba__flowing-river.wav', channel='river')
+        renpy.music.play('river.flac', channel='river')
         recalculate_street_ambience()
     
     def start_baby_ambience():
-        renpy.music.play('321712__eguaus__baby-crying.wav', channel='baby')
+        renpy.music.play('baby.flac', channel='baby')
         recalculate_street_ambience()
     
     def stop_baby_ambience():
