@@ -307,7 +307,7 @@ init python:
     ## The name that's uses for executables - the program that users will run
     ## to start the game. For example, if this is 'mygame', then on Windows,
     ## users can click 'mygame.exe' to start the game.
-    build.executable_name = "ld34"
+    build.executable_name = "dystopian-orphan"
 
     ## If True, Ren'Py will include update information into packages. This
     ## allows the updater to run.
@@ -346,6 +346,7 @@ init python:
     build.classify('**/.**', None)
     build.classify('**/#**', None)
     build.classify('**/thumbs.db', None)
+    build.classify('**/*.md', None)
 
     ## To archive files, classify them as 'archive'.
 
@@ -357,4 +358,5 @@ init python:
 
     build.documentation('*.html')
     build.documentation('*.txt')
+    build.documentation('README.md')
     
